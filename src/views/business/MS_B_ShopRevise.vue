@@ -128,8 +128,8 @@ export default {
     this.fetchMenuList(); // 메뉴 목록을 받아오는 메서드 호출
   },
   computed: {
-    ...mapGetters(["getUserMnum"]), // getUserMnum getter 가져오기
-    ...mapGetters(["getUserBnum"]), // getUserBnum getter 가져오기
+    ...mapGetters(["authStore/getUserMnum"]), // getUserMnum getter 가져오기
+    ...mapGetters(["authStore/getUserBnum"]), // getUserBnum getter 가져오기
   },
 
   methods: {
