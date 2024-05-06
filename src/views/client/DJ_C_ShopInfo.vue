@@ -21,7 +21,7 @@ export default {
     components: { DJ_C_ShopCard, C_MenuLiVue},
     data(){
         return{
-            shopInfo:[],
+            shopInfo:Object,
             menus:[]
         }
     },
@@ -42,10 +42,12 @@ export default {
             spec: sname
           }
         }).then((res)=>{
+          // this.shopInfo = res.data;
           this.shopInfo = res.data.shopInfo;
           this.menus = res.data.menus;
+          // this.menus = res.data.menuList;
           // this.menus = res.shopInfo.menus
-          console.log("결과 "+this.menus)
+          console.log("결과 "+res.data.menuList)
         })
       .catch( (error)=>{
         console.error('Error while fetching data:', error);

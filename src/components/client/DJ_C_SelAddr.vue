@@ -12,15 +12,20 @@
                 <li><h6 class="dropdown-header">이전에 사용한 주소</h6></li>
                 <li v-for="addr in addrLi" :key="addr"  @click="selAddr(addr.adaddr)" ><a class="dropdown-item rounded-2" href="#">{{ addr.adaddr }}</a></li>
                 <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item rounded-2" href="#" @click="addAddr">새로운 주소 추가</a></li>
+                <li><a class="dropdown-item rounded-2" href="#" @click="execDaumPostcode">새로운 주소 추가</a></li>
             </ul>
             <!-- <input type="text" aria-label="First name" class="form-control" :value="selectedAddr" readonly> -->
-            <input type="text" aria-label="First name" class="form-control" value="남부순환로 267나길 10" readonly>
+            <input type="text" aria-label="First name" class="form-control" :value="order_address" readonly>
         </div>
+        <!-- <addr /> -->
       </div>
 </template>
 <script>
+// import addr from "../comm/DJ_Comm_Add.vue"
 export default {
+    components:{
+        // addr
+    },
     props:{
         addrLi:{
             type:Array,
@@ -30,12 +35,14 @@ export default {
     data(){
         return{
             // selectedAddr : '',
+            order_address : ''
         }
     },
     created(){
         if(this.addrLi.length > 0){
             this.selectedAddr = this.addrLi[0].adaddr;
         }
+
     },
     computed:{
         selectedAddr(){
@@ -43,12 +50,46 @@ export default {
         }
     },
     mounted(){
-
+        
   },
     methods:{
-        addAddr(){
-            alert("주소 추가")
-        },
+        // addAddr(){
+        //     alert("주소 추가")
+        // },
+        execDaumPostcode() {
+        new window.daum.Postcode({
+          oncomplete: data => {
+            var addr = '';
+            var extraAddr = '';
+  
+            if (data.userSelectedType === 'R') {
+              addr = data.roadAddress;
+            } else {
+              addr = data.jibunAddress;
+            }
+  
+            if(data.userSelectedType === 'R'){
+              if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                extraAddr += data.bname;
+              }
+              if(data.buildingName !== '' && data.apartment === 'Y'){
+                extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+              }
+              if(extraAddr !== ''){
+                extraAddr = ' (' + extraAddr + ')';
+              }
+              this.extraAddress = extraAddr;
+            } else {
+              this.extraAddress = '';
+            }
+            
+            this.postcode = data.zonecode;
+            this.address = addr;
+            this.order_address = addr;
+            console.log(" 현재 주소는? "+ addr);
+        }
+        }).open();
+      },
         selAddr(addr){
             console.log(addr)
             this.selectedAddr = addr;
@@ -56,7 +97,17 @@ export default {
 
             this.$store.commit('cartStore/UPDATE_OADDR', addr)
 
-    },
+        },
+        findAddress() {
+            new window.daum.Postcode({
+                oncomplete: (data) => {
+                console.log("받은 주소 : ", data)
+                this.zoneCode = data.zonecode;
+                this.address01 = data.address;
+                }
+
+            }).open()
+        }
     }
 }
 </script>
