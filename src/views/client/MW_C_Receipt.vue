@@ -25,6 +25,11 @@
   import { ref, onMounted } from 'vue';  
   export default {
     name: 'OrderList',
+    computed:{
+      userMnum() {
+      return this.$store.getters['authStore/getUserMnum'];
+      }
+    }, 
     setup() {
       const orders = ref([]);
   
@@ -32,7 +37,7 @@
       const fetchOrders = async () => {
         try {
           const response = await this.axios.post('/api/ordering', {
-            mnum: this.$store.getters['authStore/getUserMnum']
+            mnum: this.userMnum
           });
           // 가져온 데이터를 orders 변수에 할당합니다.
           orders.value = response.data;

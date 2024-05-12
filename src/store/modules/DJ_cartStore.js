@@ -4,26 +4,26 @@ const cartStore = {
     // 변수 정의
     state: {
         cartList: [
-            {   
-                bnum : 1006,
-                osnum: 1122,
-                fname: '짬뽕',
-                fnum: 11,
-                foption_mikey: 1002,    // 곱배끼
-                fprice: 5000,   // 가격
-                osprice:5000,    //총합
-                fcount: 1,
-            },
-            {
-                bnum : 1006,
-                osnum: 1222,
-                fname: '탕수육',
-                fnum: 12,
-                foption_mikey: 1001,    // 기본
-                fprice: 11000,
-                osprice:22000,
-                fcount: 2,
-            }
+            // {   
+            //     bnum : 1006,
+            //     osnum: 1122,
+            //     fname: '짬뽕',
+            //     fnum: 11,
+            //     foption_mikey: 1002,    // 곱배끼
+            //     fprice: 5000,   // 가격
+            //     osprice:5000,    //총합
+            //     fcount: 1,
+            // },
+            // {
+            //     bnum : 1006,
+            //     osnum: 1222,
+            //     fname: '탕수육',
+            //     fnum: 12,
+            //     foption_mikey: 1001,    // 기본
+            //     fprice: 11000,
+            //     osprice:22000,
+            //     fcount: 2,
+            // }
         ],
         oaddr:'',
         bnum:''

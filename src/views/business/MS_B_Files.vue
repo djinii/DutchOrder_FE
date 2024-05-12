@@ -26,7 +26,7 @@
 
 <script>
 import axios from "axios";
-import { mapGetters } from "vuex";
+// import { mapGetters } from "vuex";
 import B_ShopReg from "@/components/business/MS_B_ShopReg.vue";
 import B_FileInsert from "@/components/business/MS_B_FileInsert.vue";
 
@@ -52,7 +52,14 @@ export default {
   },
 
   computed: {
-    ...mapGetters(["authStore/getUserMnum", "authStore/getUserBnum"]), // Vuex 스토어의 userMnum 게터를 가져옴
+    //...mapGetters(["authStore/getUserMnum", "authStore/getUserBnum"]), // Vuex 스토어의 userMnum 게터를 가져옴
+    getUserMnum(){
+      return this.$store.getters['authStore/getUserMnum']
+    },
+    getUserBnum(){
+      return this.$store.getters['authStore/getUserBnum']
+
+    },
     shouldShowFileRegistrationSection() {
       return (
         !this.shopStatus || !this.shopStatus.bstaus_mikey || !this.getUserMnum
@@ -67,7 +74,7 @@ export default {
     async fetchData() {
       try {
         const userMnum = this.getUserMnum; // Vuex 스토어에서 userMnum 값을 가져옴
-
+        console.log("userMnum -> ", this.getUserMnum)
         const [shopStatusResponse, bFilesResponse] = await Promise.all([
           axios.post("/ShopAcceptStatus", { mnum: userMnum }), // 사용자의 mnum을 userMnum으로 전달
           axios.post("/BFileDetail", { mnum: userMnum }),

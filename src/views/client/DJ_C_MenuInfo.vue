@@ -33,10 +33,10 @@
       <button type="button" class="btn btn-primary" v-if="!asking" @click=confirm><strong>확인</strong></button>
     </div>
       <!-- 담기 버튼 -->
-      <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#confirm" @click="confirm"> 장바구니 담기 </button>  -->
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#confirm" @click="confirm"> 장바구니 담기 </button>  
   
     <!-- 확인 모달창 -->
-    <!-- <div class="modal" tabindex="-1" id="confirm" >
+    <div class="modal" tabindex="-1" id="confirm" >
       <div class="modal-dialog" role="document">
         <div class="modal-content rounded-3 shadow">
           <div class="modal-body p-4 text-center">
@@ -50,7 +50,7 @@
           </div>
         </div>
       </div>
-    </div> -->
+    </div> 
 
 </div>
   </template>

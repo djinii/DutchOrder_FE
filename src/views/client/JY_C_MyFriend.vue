@@ -207,6 +207,12 @@ export default {
       friendSearchQuery: "",
     };
   },
+  computed:{
+    userMnum() {
+    return this.$store.getters['authStore/getUserMnum'];
+  }
+
+  },
   mounted() {
     this.fetchMyData();
   },
@@ -215,7 +221,8 @@ export default {
     async fetchMyData() {
       try {
         const response = await this.axios.post("/JY_C_MyFriend", {
-          mnum: this.$store.state.userMnum
+          mnum: this.userMnum
+
         }); 
         this.myData = response.data;
         console.log("Response:", response.data);
@@ -227,7 +234,8 @@ export default {
     async showFriendList() {
       try {
         const response = await this.axios.post("/JY_C_MyFriendList", {
-          mnum: this.myData.mnum
+          // mnum: this.myData.mnum
+          mnum: this.userMnum
         });
         this.myFriendList = response.data;
         console.log("showFriendList clicked");
@@ -243,7 +251,8 @@ export default {
     async showFriendWait() {
       try {
         const response = await this.axios.post("/JY_C_MyFriendWait", {
-          mnum: this.myData.mnum
+          // mnum: this.myData.mnum
+          mnum: this.userMnum
         }); 
         this.myFriendWait = response.data;
         console.log("showFriendWait clicked");
@@ -259,7 +268,8 @@ export default {
     async showFriendCall() {
       try {
         const response = await this.axios.post("/JY_C_MyFriendCall", {
-          mnum: this.myData.mnum
+          // mnum: this.myData.mnum
+          mnum: this.userMnum
         });
         this.myFriendCall = response.data;
         console.log("showFriendCall clicked");
@@ -323,7 +333,8 @@ export default {
     async fetchPlusFriend() {
       try {
         const response = await this.axios.post("/JY_C_PlusFriend", {
-          mnum: this.myData.mnum,
+          // mnum: this.myData.mnum,
+          mnum: this.userMnum,
           mfnum: this.searchFriend.mnum,
           mfstatus_makey: 700,
           mfstatus_mikey: 701,
