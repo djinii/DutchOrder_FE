@@ -9,7 +9,7 @@
                      <p></p>
                      <h5>{{ shop.sname }}</h5>
                      <p>영업시간<br>{{ shop.start_time }} ~ {{ shop.end_time }}</p>
-                     <!-- <p>최소주문 100원 부터</p> -->
+                     <p>최소주문 100원 부터</p>
                  </li>
              </ul>
          </div>

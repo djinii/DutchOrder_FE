@@ -5,12 +5,12 @@
             <div class="link-body-emphasis text-decoration-none border-top">
                 <div class="hstack gap-3">
                     <div class="p-2">
-                        <p class="mb-0">{{ menu.fname }} <span>{{ menu.fcount }} 개</span></p>
+                        <p class="mb-0">{{ menu.fname }} <span v-if="!addFrd">{{ menu.fcount }} 개</span></p>
                         <small class="text-body-secondary">{{ opt_msg()}}</small>
                     </div>  
                     <div class="p-2 ms-auto">
                         <h6 class="mb-0" v-if="addFrd"> {{menu.osprice}} 원</h6>
-                        <h6 class="mb-0" v-else> {{menu.fprice}} 원</h6>
+                        <h6 class="mb-0" v-else> {{menu.osprice}} 원</h6>
                     </div>
                 </div>
             </div>

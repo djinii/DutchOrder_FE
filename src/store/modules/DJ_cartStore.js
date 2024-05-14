@@ -4,29 +4,29 @@ const cartStore = {
     // 변수 정의
     state: {
         cartList: [
-            // {   
-            //     bnum : 1006,
-            //     osnum: 1122,
-            //     fname: '짬뽕',
-            //     fnum: 11,
-            //     foption_mikey: 1002,    // 곱배끼
-            //     fprice: 5000,   // 가격
-            //     osprice:5000,    //총합
-            //     fcount: 1,
-            // },
-            // {
-            //     bnum : 1006,
-            //     osnum: 1222,
-            //     fname: '탕수육',
-            //     fnum: 12,
-            //     foption_mikey: 1001,    // 기본
-            //     fprice: 11000,
-            //     osprice:22000,
-            //     fcount: 2,
-            // }
+            {   
+                bnum : 1006,
+                osnum: 1006111002,
+                fname: '짬뽕',
+                fnum: 11,
+                foption_mikey: 1002,    // 곱배끼
+                fprice: 5000,   // 가격
+                osprice:5000,    //총합
+                fcount: 1,
+            },
+            {
+                // bnum : 1006,
+                osnum: 1006121001,    // 장바구니용 메뉴번호
+                fname: '탕수육',
+                fnum: 12,
+                foption_mikey: 1001,    // 기본
+                fprice: 11000,
+                osprice:22000,
+                fcount: 2,
+            }
         ],
         oaddr:'',
-        bnum:''
+        bnum: 1006
     },
     getters: { // 상태 가져오는 함수
         GET_CART_LIST: state => state.cartList,
@@ -52,15 +52,14 @@ const cartStore = {
             console.log(product.osprice + "  stroe produ");
         },
         INCREASE_CNT:(state,osnum) => {
-        
             console.log(osnum + "increased!!!")
-            // 해당 osfnum을 가진 상품
-            const target_product = state.cartList.find(item => item.osnum == osnum.osnum);
-console.log(target_product.fcount + "#3####")
-            // console.log(target_product.fprice + " -> fprice " + target_product.fcount);
+            // 해당 osfnum을 가진 상품를 찾고
+            const target_product = state.cartList.find(item => item.osnum == osnum);
+            // 해당 상품의 수량을 증가
             target_product.fcount++;
+            // 해당 상품의 토탈값도 증가
             target_product.osprice = parseInt(target_product.fprice) * parseInt(target_product.fcount);
-
+            console.log(target_product.osprice + "!@#$%^&*(")
         },
         DECREMENT_CNT :(state,osnum)=>{
 

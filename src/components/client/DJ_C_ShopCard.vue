@@ -12,7 +12,7 @@
       <div class="col p-4 d-flex flex-column position-static">
         <!-- 이름 리뷰보러가기 -->
         <strong class="d-inline-block mb-2 text-primary-emphasis">
-          <a href="#" class="icon-link gap-1 icon-link-hover stretched-link">
+          <a href="/client/shopReviews" class="icon-link gap-1 icon-link-hover stretched-link">
             리뷰 보러가기 >
             <svg class="bi"><use xlink:href="#chevron-right"></use></svg>
           </a>
